@@ -21,14 +21,12 @@ const eventAddToCart = (cart) => {
 
   dataLayer.push({
     event: "add_to_cart",
-    ecommercer: eCommerce
+    ecommerce: eCommerce
   })
-  console.log("dataLayer:")
-  console.log(dataLayer)
 };
 
 const eventViewItemList = (prodList) => {
-const itemsFormatted = prodList.map((e, index) => {
+  const itemsFormatted = prodList.map((e, index) => {
     return {
     item_id: e.id,
     item_name: e.name,
@@ -36,15 +34,36 @@ const itemsFormatted = prodList.map((e, index) => {
     item_category: e.category,
     price: e.price,
     quantity: 1,
-    };
-})
-
-const eCommerce = {
+  };
+  const eCommerce = {
     currency: "BRL",
     item_list_id: "F01",
     item_list_name: "Página_de_produtos",
     items: itemsFormatted,
-} 
-console.log(eCommerce);
+  } 
 
+  dataLayer.push({
+    event: "view_item_list",
+    ecommerce: eCommerce
+  });
+})
 };
+
+const logo = document.querySelector(".logo");
+const eventClickLogo = (e) => {
+  const flow = {
+    page_location: window.location.href,
+    dispositivo: navigator.userAgentData.platform ?? "none",
+    browser: navigator.userAgentData.brands[0].brand ?? navigator.appCodeName,
+    disp_language: navigator.language,
+  };
+
+  e.preventDefault();
+  dataLayer.push({
+    event:"click_logo",
+    flow: flow
+  });
+
+  location.href = logo.href;
+}
+logo.addEventListener("click", eventClickLogo);
