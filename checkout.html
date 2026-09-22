@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script src="js/gtm/gtm.js"></script>
+    <meta charset="UTF-8">
+    <title>NextStore | Checkout</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9KTM5ZM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Next<span>Store</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produtos</a>
+            <a href="login.html">Entrar</a>
+            <a href="checkout.html">Carrinho <span id="cart-count" class="cart-badge">0</span></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="section-title">Finalizar Compra</h1>
+
+        <div class="product-detail-layout">
+            <!-- Coluna de Formulário -->
+            <div class="form-wrapper" style="margin: 0; max-width: 100%;">
+                <h3 style="margin-bottom: 1.5rem;">Dados de Entrega e Pagamento</h3>
+                <form id="checkout-form" onsubmit="processPurchase(event)">
+                    <div class="form-group"><label>Nome Completo</label><input type="text" required></div>
+                    <div class="form-group"><label>Endereço de Entrega</label><input type="text" required></div>
+                    <div class="form-group"><label>Cartão de Crédito</label><input type="text"
+                            placeholder="0000 0000 0000 0000" required></div>
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem;">Confirmar
+                        Pedido</button>
+                </form>
+            </div>
+
+            <!-- Coluna de Resumo -->
+            <div class="checkout-summary">
+                <h3 style="margin-bottom: 1.5rem;">Resumo do Pedido</h3>
+                <div id="cart-items-container">
+                    <!-- Itens carregados via JS -->
+                </div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NextStore E-commerce.</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+    <script>
+        const cart = getCart();
+        const container = document.getElementById('cart-items-container');
+        let total = 0;
+
+        if (cart.length === 0) {
+            container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        } else {
+            cart.forEach(item => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="summary-item">
+                        <span>${item.name}</span>
+                        <strong>R$ ${item.price.toFixed(2).replace('.', ',')}</strong>
+                    </div>
+                `;
+            });
+            document.getElementById('cart-total-price').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+    </script>
+</body>
+
+</html>

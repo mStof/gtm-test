@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script src="js/gtm/gtm.js"></script>
+    <meta charset="UTF-8">
+    <title>NextStore | Detalhe do Produto</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9KTM5ZM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Next<span>Store</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produtos</a>
+            <a href="login.html">Entrar</a>
+            <a href="checkout.html">Carrinho <span id="cart-count" class="cart-badge">0</span></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="product-detail-layout">
+            <div class="product-gallery">
+                <img id="p-img"
+                    src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+                    alt="Produto">
+            </div>
+            <div class="product-meta">
+                <p id="p-category" class="product-category">Eletrônicos</p>
+                <h1 id="p-title">Smartwatch Series X</h1>
+                <p id="p-price" class="price">R$ 1.299,00</p>
+                <p class="desc">Design sofisticado com monitoramento em tempo real de saúde, integração perfeita com seu
+                    smartphone e bateria de longa duração para acompanhar o seu ritmo.</p>
+
+                <button onclick="addToCart('SKU03')" id="btn-add" class="btn-primary"
+                    style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NextStore E-commerce.</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const sku = params.get('id') || 'SKU03';
+        const productData = dbProducts.find(p => p.id === sku) || dbProducts[2];
+
+        // Atualizar HTML visualmente
+        document.getElementById('p-img').src = productData.image;
+        document.getElementById('p-title').innerText = productData.name;
+        document.getElementById('p-price').innerText = "R$ " + productData.price.toFixed(2).replace('.', ',');
+        document.getElementById('p-category').innerText = productData.category;
+        document.getElementById('btn-add').setAttribute('onclick', `addToCart('${productData.id}')`);
+    </script>
+</body>
+
+</html>

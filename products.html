@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script src="js/gtm/gtm.js"></script>
+    <meta charset="UTF-8">
+    <title>NextStore | Produtos</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9KTM5ZM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Next<span>Store</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Produtos</a>
+            <a href="login.html">Entrar</a>
+            <a href="checkout.html">Carrinho <span id="cart-count" class="cart-badge">0</span></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="section-title">Todos os Produtos</h1>
+        <div class="product-grid" id="plp-grid">
+            <!-- Preenchido dinamicamente via JS -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NextStore E-commerce.</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+    <script>
+        // Renderizar produtos na PLP
+        const grid = document.getElementById('plp-grid');
+        dbProducts.forEach(prod => {
+            grid.innerHTML += `
+                <div class="product-card">
+                    <img src="${prod.image}" alt="${prod.name}">
+                    <div class="product-info">
+                        <p class="product-category">${prod.category}</p>
+                        <h3 class="product-title">${prod.name}</h3>
+                        <p class="product-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</p>
+                        <a href="product.html?id=${prod.id}" class="btn-outline" style="display: block; text-align: center;">Ver Produto</a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+
+</html>
