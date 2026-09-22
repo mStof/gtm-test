@@ -22,6 +22,8 @@ function addToCart(productId) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartBadge();
 
+    eventAddToCart(cart);
+
     alert(`${product.name} foi adicionado ao carrinho!`);
 }
 
