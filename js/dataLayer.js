@@ -46,6 +46,9 @@ const eventViewItemList = (prodList) => {
     event: "view_item_list",
     ecommerce: eCommerce
   });
+
+  console.log("->");
+  console.log(dataLayer);
 })
 };
 
