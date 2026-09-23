@@ -28,13 +28,14 @@ const eventAddToCart = (cart) => {
 const eventViewItemList = (prodList) => {
   const itemsFormatted = prodList.map((e, index) => {
     return {
-    item_id: e.id,
-    item_name: e.name,
-    index: index,
-    item_category: e.category,
-    price: e.price,
-    quantity: 1,
-  };
+      item_id: e.id,
+      item_name: e.name,
+      index: index,
+      item_category: e.category,
+      price: e.price,
+      quantity: 1,
+    };
+  });
   const eCommerce = {
     currency: "BRL",
     item_list_id: "F01",
@@ -49,8 +50,7 @@ const eventViewItemList = (prodList) => {
 
   console.log("->");
   console.log(dataLayer);
-})
-};
+}
 
 const logo = document.querySelector(".logo");
 const eventClickLogo = (e) => {
