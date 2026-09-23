@@ -35,25 +35,24 @@
     </footer>
 
     <script src="js/index.js"></script>
-    <script src="js/dataLayer.js"></script>
     <script>
         // Renderizar produtos na PLP
         const grid = document.getElementById('plp-grid');
         dbProducts.forEach(prod => {
             grid.innerHTML += `
-                <div class="product-card">
-                    <img src="${prod.image}" alt="${prod.name}">
-                    <div class="product-info">
-                        <p class="product-category">${prod.category}</p>
-                        <h3 class="product-title">${prod.name}</h3>
-                        <p class="product-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</p>
-                        <a href="product.html?id=${prod.id}" class="btn-outline" style="display: block; text-align: center;">Ver Produto</a>
-                    </div>
+            <div class="product-card">
+                <img src="${prod.image}" alt="${prod.name}">
+                <div class="product-info">
+                    <p class="product-category">${prod.category}</p>
+                    <h3 class="product-title">${prod.name}</h3>
+                    <p class="product-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</p>
+                    <a href="product.html?id=${prod.id}" class="btn-outline" style="display: block; text-align: center;">Ver Produto</a>
                 </div>
-            `;
-        });
-        eventViewItemList(dbProducts);
+            </div>`;
+        });     
     </script>
+    <script src="js/daxtaLayer.js"></script>
+    <script> eventViewItemList(dbProducts); </script>
 </body>
 
 </html>
